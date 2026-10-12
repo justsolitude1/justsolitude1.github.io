@@ -120,6 +120,10 @@ nav a.btn:hover { color: var(--white); }
 .article blockquote { background: var(--mint); border-radius: 8px; padding: 20px 24px; margin-bottom: 18px; }
 .article blockquote p:last-child { margin-bottom: 0; }
 
+html { scroll-behavior: smooth; }
+.article a.btn { color: var(--white); }
+.article .top-cta { margin-bottom: 8px; }
+.article .meta { margin-bottom: 24px; }
 .article .kicker { display: block; margin-top: 24px; }
 .article .kicker + h1 { margin-top: 12px; }
 
