@@ -339,6 +339,7 @@
           <label>Email
             <input type="email" name="email" autocomplete="email" required>
           </label>
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
           <button type="submit">Send me the playbook</button>
           <p class="msg" id="msg" role="alert"></p>
         </form>
@@ -359,9 +360,8 @@
 </footer>
 
 <script>
-  // Paste the two IDs from your MailerLite embedded form here to connect the signup.
-  var MAILERLITE_ACCOUNT_ID = '';
-  var MAILERLITE_FORM_ID = '';
+  // Paste the Google Apps Script web app URL here to connect the signup.
+  var SIGNUP_URL = 'https://script.google.com/macros/s/AKfycbzbPD999NjnSkhAjvOKzHmYpxd-TGrWNAPUZ9l04nGacFaN6LLr_mVR-moqkRa2egdQ/exec';
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -384,8 +384,8 @@
     if (!name) { showError('Add your first name so I know who to send it to.'); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('That email doesn\'t look right. Mind checking it?'); return; }
 
-    if (!MAILERLITE_ACCOUNT_ID || !MAILERLITE_FORM_ID) {
-      showError('Signup isn\'t connected yet. The MailerLite IDs still need to be added.');
+    if (!SIGNUP_URL) {
+      showError('Signup isn\'t connected yet. Please check back soon.');
       return;
     }
 
@@ -393,13 +393,12 @@
     button.disabled = true;
     button.textContent = 'Sending...';
 
-    var data = new FormData();
-    data.append('fields[name]', name);
-    data.append('fields[email]', email);
-    data.append('ml-submit', '1');
-    data.append('anticsrf', 'true');
+    var data = new URLSearchParams();
+    data.append('name', name);
+    data.append('email', email);
+    data.append('website', form.elements.website.value);
 
-    fetch('https://assets.mailerlite.com/jsonp/' + MAILERLITE_ACCOUNT_ID + '/forms/' + MAILERLITE_FORM_ID + '/subscribe', {
+    fetch(SIGNUP_URL, {
       method: 'POST',
       body: data
     })
