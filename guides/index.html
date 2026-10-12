@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guides | Maaz bin Yousaf</title>
+<meta name="description" content="Detailed how-to guides on LinkedIn content and outbound email for B2B founders, by Maaz bin Yousaf.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="guides.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="name" href="../">Maaz bin Yousaf</a>
+    <nav>
+      <a href="../#content">Content</a>
+      <a href="../#outbound">Outbound</a>
+      <a href="./">Guides</a>
+      <a class="btn" href="../#playbook">Free playbook</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="intro">
+    <div class="wrap">
+      <span class="label">Guides</span>
+      <h1>How I do it, step by step.</h1>
+      <p>Each guide takes one thing I do for clients and shows you exactly how to do it yourself, from the first step to the last.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="grid" id="grid"></div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">&copy; <span id="year"></span> Maaz bin Yousaf</div>
+</footer>
+
+<script src="list.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var grid = document.getElementById('grid');
+
+  function text(tag, className, value) {
+    var el = document.createElement(tag);
+    if (className) { el.className = className; }
+    el.textContent = value;
+    return el;
+  }
+
+  function formatDate(iso) {
+    return new Date(iso + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  if (GUIDES.length === 0) {
+    var empty = document.createElement('div');
+    empty.className = 'empty';
+    empty.appendChild(text('h2', '', 'The first guide is on its way.'));
+    empty.appendChild(text('p', '', 'Get the free cold email playbook now and I\'ll email you each new guide as it goes up.'));
+    var cta = text('a', 'btn', 'Get the free playbook');
+    cta.href = '../#playbook';
+    empty.appendChild(cta);
+    grid.appendChild(empty);
+  }
+
+  GUIDES.forEach(function (guide, i) {
+    var number = String(GUIDES.length - i).padStart(2, '0');
+
+    var card = document.createElement('a');
+    card.className = 'guide-card';
+    card.href = guide.slug + '.html';
+
+    var cover = document.createElement('div');
+    cover.className = 'cover';
+    cover.appendChild(text('span', 'num', 'Guide ' + number));
+    cover.appendChild(text('span', 'cover-title', guide.title));
+    card.appendChild(cover);
+
+    var body = document.createElement('div');
+    body.className = 'card-body';
+    body.appendChild(text('span', 'meta', formatDate(guide.date) + ' • ' + guide.minutes + ' min read'));
+    body.appendChild(text('h2', '', guide.title));
+    if (guide.summary) { body.appendChild(text('p', 'summary', guide.summary)); }
+
+    var author = document.createElement('div');
+    author.className = 'author';
+    author.appendChild(text('span', 'face', ''));
+    author.appendChild(text('span', '', 'Maaz bin Yousaf'));
+    body.appendChild(author);
+
+    card.appendChild(body);
+    grid.appendChild(card);
+  });
+</script>
+</body>
+</html>
