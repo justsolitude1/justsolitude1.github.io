@@ -3,12 +3,12 @@
 //
 //   { slug: 'file-name-without-html', title: '...', date: '2026-10-13', minutes: 4, summary: 'One line on what the reader will be able to do.' }
 //
-// For a downloadable file instead of a written page, use url, label and length in place of slug and minutes:
+// For a download behind the signup form, copy the-packaging-worksheet.html instead, and use label and length:
 //
-//   { url: '../files/Some-File.pdf', label: 'Worksheet', length: '7 pages', title: '...', date: '2026-10-13', summary: '...' }
+//   { slug: 'file-name-without-html', label: 'Worksheet', length: '7 pages', title: '...', date: '2026-10-13', summary: '...' }
 var GUIDES = [
   {
-    url: '../files/The-Packaging-Worksheet.pdf',
+    slug: 'the-packaging-worksheet',
     label: 'Worksheet',
     length: '7 pages',
     title: 'The Packaging Worksheet: give what you already know a name',

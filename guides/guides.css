@@ -120,15 +120,65 @@ nav a.btn:hover { color: var(--white); }
 .article blockquote { background: var(--mint); border-radius: 8px; padding: 20px 24px; margin-bottom: 18px; }
 .article blockquote p:last-child { margin-bottom: 0; }
 
-.signup-band { background: var(--ink); color: var(--white); border-radius: 8px; padding: 32px; margin-top: 56px; }
+.article .kicker { display: block; margin-top: 24px; }
+.article .kicker + h1 { margin-top: 12px; }
+
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
+.compare .box { border-radius: 8px; padding: 22px 24px; }
+.compare .box p, .compare .box ol { font-size: 17px; margin-bottom: 8px; }
+.compare .box ol { padding-left: 22px; }
+.compare .box li { margin-bottom: 2px; }
+.compare .tag { display: block; font-size: 12.5px; font-weight: 500; letter-spacing: 1.6px; text-transform: uppercase; margin-bottom: 10px; }
+.compare .before { border: 1.5px solid var(--line); color: #55665C; }
+.compare .before .note { font-size: 15px; margin-bottom: 0; }
+.compare .after { background: var(--mint); }
+.compare .after .tag { color: var(--brand-green); }
+
+.steps-list li { margin-bottom: 14px; }
+
+.signup-band { background: var(--ink); color: var(--white); border-radius: 8px; padding: 32px; margin-top: 56px; scroll-margin-top: 24px; }
 .signup-band h2 { font-size: 26px; margin: 0 0 8px; }
 .signup-band p { color: var(--mint); font-size: 16.5px; margin-bottom: 20px; }
 .signup-band .btn { background: var(--lime-pop); color: var(--ink); }
 .signup-band .btn:hover { background: var(--white); }
 
+.signup-band form { display: grid; gap: 14px; max-width: 420px; }
+.signup-band label { font-size: 13.5px; font-weight: 500; display: grid; gap: 6px; }
+.signup-band input {
+  font: inherit;
+  font-size: 16px;
+  padding: 13px 14px;
+  border: 1.5px solid transparent;
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--ink);
+  width: 100%;
+}
+.signup-band input:focus { outline: none; border-color: var(--lime-pop); }
+.signup-band button {
+  font: inherit;
+  font-weight: 600;
+  font-size: 17px;
+  padding: 15px 18px;
+  border: none;
+  border-radius: 6px;
+  background: var(--lime-pop);
+  color: var(--ink);
+  cursor: pointer;
+}
+.signup-band button:hover { background: var(--white); }
+.signup-band button:disabled { opacity: 0.6; cursor: default; }
+.signup-band .fine { font-size: 13px; margin: 16px 0 0; }
+.signup-band .msg { font-size: 14px; margin: 0; display: none; }
+.signup-band .msg.error { display: block; color: #FFB4A8; }
+.signup-band .done { display: none; }
+.signup-band.sent form, .signup-band.sent .intro, .signup-band.sent .fine { display: none; }
+.signup-band.sent .done { display: block; }
+
 footer { border-top: 1.5px solid var(--line); padding: 24px 0; font-size: 13.5px; color: var(--forest); }
 
 @media (max-width: 860px) {
   .grid { grid-template-columns: 1fr; padding-bottom: 64px; }
+  .compare { grid-template-columns: 1fr; }
   nav a:not(.btn) { display: none; }
 }
